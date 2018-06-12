@@ -1,5 +1,4 @@
 # saturn
-#bla
 
 ## Development
 
