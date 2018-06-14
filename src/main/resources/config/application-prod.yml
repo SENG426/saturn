@@ -19,7 +19,7 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/group3?useUnicode=true&characterEncoding=utf8&useSSL=false  #Replace with your database url
+        url: jdbc:mysql://localhost:8003/group3?useUnicode=true&characterEncoding=utf8&useSSL=false  #Replace with your database url
         name:
         username: group3  #Replace this field with your database username.
         password: vDT*x9@!v  #Replace this field with your database username.
@@ -61,7 +61,7 @@ liquibase:
     contexts: prod
 
 server:
-    port: 8003
+    port: 3000
     compression:
         enabled: true
         mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
