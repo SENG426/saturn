@@ -27,7 +27,7 @@ spring:
         url: jdbc:mysql://localhost:3306/group3?useUnicode=true&characterEncoding=utf8&useSSL=false  #Replace with your database url
         name:
         username: group3  #Replace this field with your database username.
-        password: vDT*x9!v  #Replace this field with your database password.
+        password: 'vDT*x9!v'  #Replace this field with your database password.
         hikari:
             data-source-properties:
                 cachePrepStmts: true
