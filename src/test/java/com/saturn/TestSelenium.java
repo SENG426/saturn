@@ -27,7 +27,7 @@ public class TestSelenium {
 	@Before
 	public void setUp() throws Exception {
 		setDriver("headless");
-		url = "http://localhost:8080";
+		url = "http://localhost:8003";
 		driver.get(url);
 	}
 
