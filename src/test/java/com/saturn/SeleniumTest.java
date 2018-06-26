@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
-public class TestSelenium {
+public class SeleniumTest {
 	private WebDriver driver;
 	private String url;
 	private boolean acceptNextAlert = true;
