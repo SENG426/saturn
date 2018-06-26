@@ -68,7 +68,7 @@ liquibase:
     contexts: dev
 
 server:
-    port: 8080	#Replace this field with your desired port number
+    port: 8003	#Replace this field with your desired port number
 
 # ===================================================================
 # JHipster specific properties
