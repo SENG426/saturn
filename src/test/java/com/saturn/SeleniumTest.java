@@ -107,7 +107,7 @@ public class SeleniumTest {
 		switch (driverName) {
 			case "firefox":
 				System.setProperty("webdriver.gecko.driver", "/opt/dgsdfgsdgdsgsdf");
-				driver = new FirefoxDriver(new FirefoxBinary(new File("/usr/bin/firefox-esr")), new FirefoxProfile());
+				driver = new FirefoxDriver(new FirefoxBinary(new File("/usr/bin/firefox")), new FirefoxProfile());
 				driver.manage().window().maximize();
 				break;
 			case "chrome":
