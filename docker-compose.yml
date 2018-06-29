@@ -1,0 +1,47 @@
+# Requirements
+#
+# - Docker
+# - Docker compose
+#
+# Instructions
+#
+# 1. Open saturn-1.0.4-src/src/main/resources/config/application-dev.yml
+#    and in the database "url" field, change "localhost" to "saturn-mysql"
+# 2. $ docker-compose up saturn 
+# 3. Nagivate to localhost:8080
+# 4. To run tests:
+#    $ docker-compose exec saturn mvn test -Dtest=com.saturn.TestSelenium
+# 5. Optionally, run adminer (graphical database interface)
+#    $ docker-compose up adminer
+#    Go to localhost:8081 and enter the db credentials
+#        server: saturn-mysql
+#        username: saturn
+#        password: saturn
+#        database: saturn   
+
+version: '2'
+services:
+  saturn:
+    build:
+      context: .
+      dockerfile: saturn.Dockerfile
+    working_dir: /saturn
+    volumes:
+      - ./:/saturn
+    ports:
+      - 8003:8003
+    depends_on:
+      - saturn-mysql
+
+  saturn-mysql:
+    image: mysql:5
+    environment:
+      MYSQL_DATABASE: saturn
+      MYSQL_USER: saturn
+      MYSQL_PASSWORD: saturn
+      MYSQL_ROOT_PASSWORD: root
+
+  adminer:
+    image: adminer
+    ports:
+      - 8081:8080
