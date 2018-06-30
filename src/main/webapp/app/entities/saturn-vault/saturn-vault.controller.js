@@ -16,6 +16,7 @@
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.toggleVisible = toggleVisible;
+        vm.exportPasswords = exportPasswords;
 
         loadAll();
 
@@ -61,6 +62,26 @@
                 sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
                 search: vm.currentSearch
             });
+        }
+
+        function exportPasswords(exportAll) {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "site,login,password\r\n";
+            vm.saturnPasses.forEach(function(saturnPass) {
+                if (exportAll || saturnPass.checked) {
+                    csvContent += saturnPass.site + ",";
+                    csvContent += saturnPass.login + ",";
+                    csvContent += saturnPass.password + "\r\n";
+                }
+            });
+
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "saturn_export.csv");
+            document.body.appendChild(link); // Required for FF
+            link.click();   // download csv file
+            document.body.removeChild(link);
         }
     }
 })();

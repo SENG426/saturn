@@ -9,8 +9,6 @@
 #    and in the database "url" field, change "localhost" to "saturn-mysql"
 # 2. $ docker-compose up saturn 
 # 3. Nagivate to localhost:8080
-# 4. To run tests:
-#    $ docker-compose exec saturn mvn test -Dtest=com.saturn.TestSelenium
 # 5. Optionally, run adminer (graphical database interface)
 #    $ docker-compose up adminer
 #    Go to localhost:8081 and enter the db credentials

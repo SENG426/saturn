@@ -18,6 +18,14 @@
                     <span>Create new Saturn Vault</span>
                 </button>
             </div>
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ng-click="vm.exportPasswords(true)">
+                    <span>Export All</span>
+                </button>
+                <button class="btn btn-primary" ng-click="vm.exportPasswords(false)">
+                    <span>Export Selected</span>
+                </button>
+            </div>
         </div>
     </div>
     <br/>
@@ -25,6 +33,7 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th></th>
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="site"><span>Site</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="login"><span>Login</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -36,6 +45,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="saturnPass in vm.saturnPasses track by saturnPass.id">
+                    <td><input type="checkbox" ng-model="vm.saturnPasses[$index].checked"></td>
                     <td>{{saturnPass.id}}</td>
                     <td>{{saturnPass.site}}</td>
                     <td>{{saturnPass.login}}</td>
