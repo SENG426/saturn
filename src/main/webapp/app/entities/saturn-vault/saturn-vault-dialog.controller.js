@@ -14,6 +14,8 @@
 		vm.datePickerOpenStatus = {};
 		vm.openCalendar = openCalendar;
 		vm.openPwdGenModal = openPwdGenModal;
+		vm.checkPasswordStrength = checkPasswordStrength;
+		vm.passwordStrength = '';
 		vm.save = save;
 		vm.clear = clear;
 		vm.users = User.query();
@@ -32,8 +34,60 @@
 				size: 'sm'
 			}).result.then(function (password) {
 				vm.saturnPass.password = password;
+				vm.checkPasswordStrength();
 			}, function () {
 			});
+		}
+
+		function calculateLog(value, length, base) {
+			return Math.log(Math.pow(value, length))/Math.log(base);
+		}
+
+		function checkPasswordStrength() {
+			let pool = 0;
+			let progress = document.querySelector('.progress');
+			
+			if(!vm.saturnPass.password) {
+				progress.style.display = 'none';
+				vm.saturnPass.password = '';
+				pool = 0;
+				return ;
+			}
+
+			if((/[a-z]/.test(vm.saturnPass.password))) {
+				pool += 26;
+			}
+
+			if((/[A-Z]/.test(vm.saturnPass.password))) {
+				pool += 26;
+			}
+
+			if((/[0-9]/.test(vm.saturnPass.password))) {
+				pool += 10;
+			}
+
+			if((/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(vm.saturnPass.password))) {
+				pool += 30;
+			}
+																																																			
+			let entropy = calculateLog(pool, vm.saturnPass.password.length, 2);
+			let bar = document.querySelector('.progress-bar');
+			progress.style.display = 'block';
+
+			if(entropy < 36) {
+				vm.passwordStrength = 'weak';
+				bar.style.width = '33.3%';
+				bar.style.backgroundColor = 'red';
+
+			} else if(entropy >= 36 && entropy < 60) {
+				vm.passwordStrength = 'intermediate';
+				bar.style.width = '66.6%';
+				bar.style.backgroundColor = 'orange';
+			} else {
+				vm.passwordStrength = 'strong';
+				bar.style.width = '100%';
+				bar.style.backgroundColor = 'green';
+			}
 		}
 
 		function clear() {

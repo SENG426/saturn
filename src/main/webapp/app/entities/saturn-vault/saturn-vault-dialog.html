@@ -46,9 +46,12 @@
 				<label class="control-label" for="field_password">Password</label>
 				<div>
 					<input type="password" class="form-control" name="password" id="field_password"
-						   ng-model="vm.saturnPass.password" required />
+						   ng-model="vm.saturnPass.password" ng-change="vm.checkPasswordStrength()" required />
 					<span class="glyphicon glyphicon-eye-open" style="float:right; cursor: pointer; margin: -23px 16px 0px 0;"></span>
-				</div>
+                </div>
+                <div class="progress help-block" style="height: 35px; display: none;">
+                    <div class="progress-bar" style="color:#fff; height: 35px; padding: 10px; font-weight: 600;">{{vm.passwordStrength}}</div>
+                </div>
 				<div ng-show="editForm.password.$invalid">
 					<p class="help-block" ng-show="editForm.password.$error.required">
 						This field is required.
