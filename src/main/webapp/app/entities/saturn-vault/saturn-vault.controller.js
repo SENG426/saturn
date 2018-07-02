@@ -52,23 +52,23 @@
         }
 
         function clickToCopy(passToCopy) {
-			var body = angular.element(document.body);
-			var textarea = angular.element('<textarea/>');
-			textarea.css({
-				display: 'hidden',
-				position: 'fixed',
-				opacity: '0'
-			});
+            var body = angular.element(document.body);
+            var textarea = angular.element('<textarea/>');
+            textarea.css({
+                display: 'hidden',
+                position: 'fixed',
+                opacity: '0'
+            });
 
-			textarea.val(passToCopy);
-			body.append(textarea);
-			textarea[0].select();
-			if (document.execCommand('copy')) {
+            textarea.val(passToCopy);
+            body.append(textarea);
+            textarea[0].select();
+            if (document.execCommand('copy')) {
                 AlertService.success(vm.copySuccessText)
-			} else {
+            } else {
                 AlertService.error(vm.copyErrorText);
             }
-		}
+        }
 
         function loadPage(page) {
             vm.page = page;
@@ -90,7 +90,7 @@
         function exportPasswords(exportAll) {
             let csvContent = "data:text/csv;charset=utf-8,";
             csvContent += "site,login,password\r\n";
-            vm.saturnPasses.forEach(function(saturnPass) {
+            vm.saturnPasses.forEach(function (saturnPass) {
                 if (exportAll || saturnPass.checked) {
                     csvContent += saturnPass.site + ",";
                     csvContent += saturnPass.login + ",";
