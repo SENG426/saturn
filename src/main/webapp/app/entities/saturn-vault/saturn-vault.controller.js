@@ -17,6 +17,10 @@
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.toggleVisible = toggleVisible;
         vm.exportPasswords = exportPasswords;
+        vm.clickToCopy = clickToCopy;
+        vm.copySuccessText = "Password was successfully copied!"
+        vm.copyErrorText = "There was an error copying the password!"
+
 
         loadAll();
 
@@ -46,6 +50,25 @@
                 AlertService.error(error.data.message);
             }
         }
+
+        function clickToCopy(passToCopy) {
+			var body = angular.element(document.body);
+			var textarea = angular.element('<textarea/>');
+			textarea.css({
+				display: 'hidden',
+				position: 'fixed',
+				opacity: '0'
+			});
+
+			textarea.val(passToCopy);
+			body.append(textarea);
+			textarea[0].select();
+			if (document.execCommand('copy')) {
+                AlertService.success(vm.copySuccessText)
+			} else {
+                AlertService.error(vm.copyErrorText);
+            }
+		}
 
         function loadPage(page) {
             vm.page = page;
