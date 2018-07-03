@@ -59,7 +59,7 @@
             }
 
             for (var i = 0; i < vm.genOptions.length; i++) {
-                var position = Math.round(Math.random() * chars.length);
+                var position = Math.floor(Math.random() * chars.length);
 
                 if (vm.genOptions.repetition) {
                     if (vm.password.indexOf(chars[position]) === -1) {
